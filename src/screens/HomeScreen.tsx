@@ -51,7 +51,7 @@ const HomeScreen = () => {
 
       const sensors = await getSensors(first.id);
       setSensors(sensors);
-      // La vitesse est globale, on la récupère du premier sensor
+      // Speed is global, get it from the first sensor
       if (sensors.length > 0 && sensors[0].speed) {
         setGlobalSpeed(sensors[0].speed);
       }
@@ -70,45 +70,45 @@ const HomeScreen = () => {
   const handleModeChange = async (newMode: "1" | "2") => {
     if (!topicId) return;
     
-    // Ne pas faire d'appel API si le mode est déjà actif
+    // Don't make API call if mode is already active
     if (projectMode === newMode) {
       setShowModeModal(false);
       return;
     }
     
     try {
-      // Appel API pour changer le mode
+      // API call to change mode
       await changeProjectMode(topicId, newMode);
       
-      // Mise à jour de l'état local
+      // Update local state
       setProjectMode(newMode);
       setShowModeModal(false);
     } catch (e) {
       console.error("Error changing project mode", e);
-      // TODO: Afficher un message d'erreur à l'utilisateur
+      // TODO: Display error message to user
     }
   };
 
   const handleSpeedChange = async (newSpeed: "1" | "2" | "3" | "4") => {
-    // Utiliser le premier sensor pour changer la vitesse (s'applique à tous)
+    // Use first sensor to change speed (applies to all)
     if (sensors.length === 0 || !sensors[0].id) return;
     
-    // Ne pas faire d'appel API si la vitesse est déjà active
+    // Don't make API call if speed is already active
     if (globalSpeed === newSpeed) {
       setShowSpeedModal(false);
       return;
     }
     
     try {
-      // Appel API pour changer la vitesse (sur le premier sensor, mais s'applique à tous)
+      // API call to change speed (on first sensor, but applies to all)
       await changeSensorSpeed(sensors[0].id, newSpeed);
       
-      // Mise à jour de l'état local
+      // Update local state
       setGlobalSpeed(newSpeed);
       setShowSpeedModal(false);
     } catch (e) {
       console.error("Error changing sensor speed", e);
-      // TODO: Afficher un message d'erreur à l'utilisateur
+      // TODO: Display error message to user
     }
   };
 
@@ -121,10 +121,10 @@ const HomeScreen = () => {
     if (!selectedSensor || !selectedSensor.id) return;
     
     try {
-      // Appel API pour changer la température
+      // API call to change temperature
       await changeSensorTemperature(selectedSensor.id, newTemperature);
       
-      // Mise à jour de l'état local
+      // Update local state
       setSensors((prevSensors) =>
         prevSensors.map((s) =>
           s.id === selectedSensor.id
@@ -137,7 +137,7 @@ const HomeScreen = () => {
       setSelectedSensor(null);
     } catch (e) {
       console.error("Error changing sensor temperature", e);
-      // TODO: Afficher un message d'erreur à l'utilisateur
+      // TODO: Display error message to user
     }
   };
 
@@ -149,7 +149,7 @@ const HomeScreen = () => {
   const handleStatusChange = async (newStatus: "02" | "03") => {
     if (!selectedSensor || !selectedSensor.id) return;
     
-    // Ne pas faire d'appel API si le status est déjà actif
+    // Don't make API call if status is already active
     if (selectedSensor.status === newStatus) {
       setShowStatusModal(false);
       setSelectedSensor(null);
@@ -157,10 +157,10 @@ const HomeScreen = () => {
     }
     
     try {
-      // Appel API pour changer le status
+      // API call to change status
       await changeSensorStatus(selectedSensor.id, newStatus);
       
-      // Mise à jour de l'état local
+      // Update local state
       setSensors((prevSensors) =>
         prevSensors.map((s) =>
           s.id === selectedSensor.id
@@ -173,7 +173,7 @@ const HomeScreen = () => {
       setSelectedSensor(null);
     } catch (e) {
       console.error("Error changing sensor status", e);
-      // TODO: Afficher un message d'erreur à l'utilisateur
+      // TODO: Display error message to user
     }
   };
 
@@ -225,12 +225,12 @@ const HomeScreen = () => {
                 className="bg-slate-700 px-4 py-2.5 rounded-xl border border-slate-600 active:opacity-80 flex items-center justify-center"
                 onPress={logout}
               >
-                <Text className="text-slate-50 text-sm font-semibold">Déconnexion</Text>
+                <Text className="text-slate-50 text-sm font-semibold">Logout</Text>
               </TouchableOpacity>
             </View>
           </View>
 
-          {/* Ligne secondaire : Mode + Vitesse */}
+          {/* Secondary line: Mode + Speed */}
           {(projectMode || globalSpeed) && (
             <View className="flex-row items-center justify-between">
               {projectMode && (
@@ -244,7 +244,7 @@ const HomeScreen = () => {
                   <Text className={`text-sm font-semibold ${
                     projectMode === "1" ? "text-blue-400" : "text-orange-400"
                   }`}>
-                    {projectMode === "1" ? "Clim" : "Chauffage"}
+                    {projectMode === "1" ? "Cooling" : "Heating"}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -260,7 +260,7 @@ const HomeScreen = () => {
           {loading ? (
             <View className="flex-1 justify-center items-center gap-3">
               <ActivityIndicator size="large" color="#60A5FA" />
-              <Text className="text-slate-400 text-[17px] font-medium">Chargement...</Text>
+              <Text className="text-slate-400 text-[17px] font-medium">Loading...</Text>
             </View>
           ) : (
             <FlatList
@@ -278,16 +278,16 @@ const HomeScreen = () => {
           )}
         </View>
 
-        {/* Footer avec date de synchronisation */}
+        {/* Footer with sync date */}
         <View className="bg-slate-800 border-t border-slate-700/50" style={{ paddingBottom: insets.bottom }}>
           <View className={`px-5 ${isDesktop ? "max-w-[1400px] self-center w-full" : ""}`} style={{ paddingVertical: 8 }}>
             <View className="flex-row items-center justify-center gap-2">
               <View className="w-1.5 h-1.5 rounded-full bg-slate-500"></View>
               <Text className="text-xs text-slate-400">
                 {lastSync ? (
-                  <>Dernière synchronisation : {formatLastSync(lastSync)}</>
+                  <>Last sync: {formatLastSync(lastSync)}</>
                 ) : (
-                  "Aucune synchronisation disponible"
+                  "No sync available"
                 )}
               </Text>
             </View>
@@ -295,7 +295,7 @@ const HomeScreen = () => {
         </View>
       </View>
 
-      {/* Modal de sélection du mode */}
+      {/* Mode selection modal */}
       <Modal
         visible={showModeModal}
         transparent={true}
@@ -311,7 +311,7 @@ const HomeScreen = () => {
             onPress={(e) => e.stopPropagation()}
           >
             <Text className="text-lg font-bold text-slate-50 mb-4 text-center">
-              Choisir le mode
+              Choose mode
             </Text>
             
             <TouchableOpacity
@@ -323,10 +323,10 @@ const HomeScreen = () => {
               } active:opacity-80`}
             >
               <ModeIcon mode="1" size={24} />
-              <Text className={`text-base font-semibold flex-1 ${
+                  <Text className={`text-base font-semibold flex-1 ${
                 projectMode === "1" ? "text-blue-400" : "text-slate-300"
               }`}>
-                Climatisation
+                Cooling
               </Text>
               {projectMode === "1" && (
                 <View className="w-2 h-2 rounded-full bg-blue-400"></View>
@@ -342,10 +342,10 @@ const HomeScreen = () => {
               } active:opacity-80`}
             >
               <ModeIcon mode="2" size={24} />
-              <Text className={`text-base font-semibold flex-1 ${
+                  <Text className={`text-base font-semibold flex-1 ${
                 projectMode === "2" ? "text-orange-400" : "text-slate-300"
               }`}>
-                Chauffage
+                Heating
               </Text>
               {projectMode === "2" && (
                 <View className="w-2 h-2 rounded-full bg-orange-400"></View>
@@ -357,14 +357,14 @@ const HomeScreen = () => {
               className="mt-4 pt-4 border-t border-slate-700"
             >
               <Text className="text-sm text-slate-400 text-center font-medium">
-                Annuler
+                Cancel
               </Text>
             </TouchableOpacity>
           </Pressable>
         </Pressable>
       </Modal>
 
-      {/* Modal de sélection de la vitesse */}
+      {/* Speed selection modal */}
       <Modal
         visible={showSpeedModal}
         transparent={true}
@@ -380,7 +380,7 @@ const HomeScreen = () => {
             onPress={(e) => e.stopPropagation()}
           >
             <Text className="text-lg font-bold text-slate-50 mb-4 text-center">
-              Choisir la vitesse
+              Choose speed
             </Text>
             
             {(["1", "2", "3", "4"] as const).map((speedValue) => {
@@ -453,14 +453,14 @@ const HomeScreen = () => {
               className="mt-4 pt-4 border-t border-slate-700"
             >
               <Text className="text-sm text-slate-400 text-center font-medium">
-                Annuler
+                Cancel
               </Text>
             </TouchableOpacity>
           </Pressable>
         </Pressable>
       </Modal>
 
-      {/* Modal de modification de température */}
+      {/* Temperature modification modal */}
       <Modal
         visible={showTemperatureModal}
         transparent={true}
@@ -482,7 +482,7 @@ const HomeScreen = () => {
             onPress={(e) => e.stopPropagation()}
           >
             <Text className="text-lg font-bold text-slate-50 mb-2 text-center">
-              Modifier la température
+              Modify temperature
             </Text>
             {selectedSensor && (
               <Text className="text-sm text-slate-400 mb-4 text-center">
@@ -502,7 +502,7 @@ const HomeScreen = () => {
         </Pressable>
       </Modal>
 
-      {/* Modal de changement de status */}
+      {/* Status change modal */}
       <Modal
         visible={showStatusModal}
         transparent={true}
@@ -524,7 +524,7 @@ const HomeScreen = () => {
             onPress={(e) => e.stopPropagation()}
           >
             <Text className="text-lg font-bold text-slate-50 mb-2 text-center">
-              Changer le status
+              Change status
             </Text>
             {selectedSensor && (
               <Text className="text-sm text-slate-400 mb-6 text-center">
@@ -544,7 +544,7 @@ const HomeScreen = () => {
               <Text className={`text-base font-semibold flex-1 ${
                 selectedSensor?.status === "03" ? "text-emerald-400" : "text-slate-300"
               }`}>
-                Allumer
+                Turn on
               </Text>
               {selectedSensor?.status === "03" && (
                 <View className="w-2 h-2 rounded-full bg-emerald-400"></View>
@@ -563,7 +563,7 @@ const HomeScreen = () => {
               <Text className={`text-base font-semibold flex-1 ${
                 selectedSensor?.status === "02" ? "text-red-400" : "text-red-300"
               }`}>
-                Éteindre
+                Turn off
               </Text>
               {selectedSensor?.status === "02" && (
                 <View className="w-2 h-2 rounded-full bg-red-400"></View>
@@ -578,7 +578,7 @@ const HomeScreen = () => {
               className="mt-4 pt-4 border-t border-slate-700"
             >
               <Text className="text-sm text-slate-400 text-center font-medium">
-                Annuler
+                Cancel
               </Text>
             </TouchableOpacity>
           </Pressable>
@@ -616,7 +616,7 @@ const TemperatureInput = ({ initialTemperature, onConfirm, onCancel }: Temperatu
 
   return (
     <>
-      {/* Affichage de la température */}
+      {/* Temperature display */}
       <View className="mb-6 items-center">
         <View className="flex-row items-baseline gap-1 mb-2">
           <Text className="text-5xl font-extrabold text-blue-400 tracking-tight">
@@ -629,7 +629,7 @@ const TemperatureInput = ({ initialTemperature, onConfirm, onCancel }: Temperatu
         </Text>
       </View>
 
-      {/* Boutons +/- */}
+      {/* +/- buttons */}
       <View className="flex-row items-center justify-center gap-4 mb-6">
         <TouchableOpacity
           onPress={() => adjustTemperature(-STEP)}
@@ -646,7 +646,7 @@ const TemperatureInput = ({ initialTemperature, onConfirm, onCancel }: Temperatu
         </TouchableOpacity>
 
         <View className="flex-1">
-          {/* Slider visuel */}
+          {/* Visual slider */}
           <View className="h-2 bg-slate-700 rounded-full relative">
             <View
               className="absolute h-full bg-blue-500 rounded-full"
@@ -679,7 +679,7 @@ const TemperatureInput = ({ initialTemperature, onConfirm, onCancel }: Temperatu
         </TouchableOpacity>
       </View>
 
-      {/* Boutons rapides */}
+      {/* Quick buttons */}
       <View className="flex-row gap-2 mb-6">
         {[18, 20, 22, 24, 26].map((temp) => (
           <TouchableOpacity
@@ -700,14 +700,14 @@ const TemperatureInput = ({ initialTemperature, onConfirm, onCancel }: Temperatu
         ))}
       </View>
 
-      {/* Boutons d'action */}
+      {/* Action buttons */}
       <View className="flex-row gap-3">
         <TouchableOpacity
           onPress={onCancel}
           className="flex-1 px-4 py-3 rounded-xl border border-slate-600 bg-slate-700/50 active:opacity-80"
         >
           <Text className="text-slate-300 text-center font-semibold">
-            Annuler
+            Cancel
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -715,7 +715,7 @@ const TemperatureInput = ({ initialTemperature, onConfirm, onCancel }: Temperatu
           className="flex-1 px-4 py-3 rounded-xl bg-blue-500 active:opacity-80"
         >
           <Text className="text-slate-50 text-center font-semibold">
-            Confirmer
+            Confirm
           </Text>
         </TouchableOpacity>
       </View>
@@ -733,15 +733,15 @@ const formatLastSync = (dateString: string): string => {
     const diffDays = Math.floor(diffMs / 86400000);
 
     if (diffMins < 1) {
-      return "à l'instant";
+      return "just now";
     } else if (diffMins < 60) {
-      return `il y a ${diffMins} min${diffMins > 1 ? "s" : ""}`;
+      return `${diffMins} min${diffMins > 1 ? "s" : ""} ago`;
     } else if (diffHours < 24) {
-      return `il y a ${diffHours} h${diffHours > 1 ? "" : ""}`;
+      return `${diffHours} h${diffHours > 1 ? "" : ""} ago`;
     } else if (diffDays < 7) {
-      return `il y a ${diffDays} jour${diffDays > 1 ? "s" : ""}`;
+      return `${diffDays} day${diffDays > 1 ? "s" : ""} ago`;
     } else {
-      return date.toLocaleDateString("fr-FR", {
+      return date.toLocaleDateString("en-US", {
         day: "numeric",
         month: "short",
         hour: "2-digit",

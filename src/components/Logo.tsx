@@ -17,7 +17,7 @@ const Logo = ({ size = 40 }: LogoProps) => {
         style={{ width: size, height: size }}
       />
       
-      {/* Partie gauche - Chauffage (rouge/orange) */}
+      {/* Left side - Heating (red/orange) */}
       <View 
         className="absolute rounded-l-xl"
         style={{ 
@@ -25,11 +25,11 @@ const Logo = ({ size = 40 }: LogoProps) => {
           height: size * 0.7,
           top: size * 0.15,
           left: 0,
-          backgroundColor: '#F97316', // Orange pour chaud
+          backgroundColor: '#F97316', // Orange for hot
         }}
       />
       
-      {/* Flèche montante (chaud) - côté gauche */}
+      {/* Upward arrow (hot) - left side */}
       <View 
         className="absolute"
         style={{
@@ -46,7 +46,7 @@ const Logo = ({ size = 40 }: LogoProps) => {
         }}
       />
       
-      {/* Lignes de chaleur (côté gauche) */}
+      {/* Heat lines (left side) */}
       <View 
         className="absolute bg-white/60 rounded-full"
         style={{
@@ -66,7 +66,7 @@ const Logo = ({ size = 40 }: LogoProps) => {
         }}
       />
       
-      {/* Partie droite - Climatisation (bleu) */}
+      {/* Right side - Cooling (blue) */}
       <View 
         className="absolute rounded-r-xl"
         style={{ 
@@ -74,11 +74,11 @@ const Logo = ({ size = 40 }: LogoProps) => {
           height: size * 0.7,
           top: size * 0.15,
           right: 0,
-          backgroundColor: '#38BDF8', // Bleu pour froid
+          backgroundColor: '#38BDF8', // Blue for cold
         }}
       />
       
-      {/* Flèche descendante (froid) - côté droit */}
+      {/* Downward arrow (cold) - right side */}
       <View 
         className="absolute"
         style={{
@@ -95,7 +95,7 @@ const Logo = ({ size = 40 }: LogoProps) => {
         }}
       />
       
-      {/* Flocons/vagues de froid (côté droit) */}
+      {/* Snowflakes/cold waves (right side) */}
       <View 
         className="absolute bg-white/60 rounded-full"
         style={{
@@ -115,7 +115,7 @@ const Logo = ({ size = 40 }: LogoProps) => {
         }}
       />
       
-      {/* Ligne de séparation centrale */}
+      {/* Central separation line */}
       <View 
         className="absolute bg-white/40"
         style={{

@@ -21,7 +21,7 @@ const LoginScreen = () => {
 
   const onSubmit = async () => {
     if (!username || !password) {
-      setError("Merci de renseigner identifiant et mot de passe.");
+      setError("Please enter username and password.");
       return;
     }
 
@@ -34,7 +34,7 @@ const LoginScreen = () => {
       setError(
         e?.response?.data?.detail ||
           e?.message ||
-          "Impossible de se connecter."
+          "Unable to connect."
       );
     } finally {
       setLoading(false);
@@ -56,7 +56,7 @@ const LoginScreen = () => {
             KoolControl
           </Text>
           <Text className="text-lg text-slate-400 text-center">
-            Pilote ton confort, simplement
+            Control your comfort, simply
           </Text>
         </View>
 
@@ -64,7 +64,7 @@ const LoginScreen = () => {
         <View className="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-lg">
           <View className="mb-4">
             <Text className="text-slate-300 text-base font-semibold mb-2">
-              Identifiant
+              Username
             </Text>
             <TextInput
               className="border border-slate-700 rounded-xl px-4 py-3.5 text-slate-50 bg-slate-900 text-base"
@@ -79,11 +79,11 @@ const LoginScreen = () => {
 
           <View className="mb-4">
             <Text className="text-slate-300 text-base font-semibold mb-2">
-              Mot de passe
+              Password
             </Text>
             <TextInput
               className="border border-slate-700 rounded-xl px-4 py-3.5 text-slate-50 bg-slate-900 text-base"
-              placeholder="Mot de passe"
+              placeholder="Password"
               placeholderTextColor="#6B7280"
               secureTextEntry
               value={password}
@@ -110,12 +110,12 @@ const LoginScreen = () => {
               <View className="flex-row items-center gap-2">
                 <ActivityIndicator size="small" color="#0B1120" />
                 <Text className="text-slate-900 text-lg font-semibold">
-                  Connexion...
+                  Connecting...
                 </Text>
               </View>
             ) : (
               <Text className="text-slate-900 text-lg font-semibold">
-                Se connecter
+                Sign in
               </Text>
             )}
           </Pressable>

@@ -31,10 +31,10 @@ export async function getSensors(projectId: number): Promise<Sensor[]> {
 }
 
 /**
- * Change la vitesse d'un sensor (1 = Low, 2 = Medium, 3 = Fast, 4 = Auto)
- * La vitesse est appliquée globalement à tous les sensors
- * @param sensorId - ID du sensor
- * @param speed - Vitesse à définir ("1" pour Low, "2" pour Medium, "3" pour Fast, "4" pour Auto)
+ * Change the speed of a sensor (1 = Low, 2 = Medium, 3 = Fast, 4 = Auto)
+ * Speed is applied globally to all sensors
+ * @param sensorId - Sensor ID
+ * @param speed - Speed to set ("1" for Low, "2" for Medium, "3" for Fast, "4" for Auto)
  * @returns Promise<void>
  */
 export async function changeSensorSpeed(sensorId: number, speed: "1" | "2" | "3" | "4"): Promise<void> {
@@ -44,9 +44,9 @@ export async function changeSensorSpeed(sensorId: number, speed: "1" | "2" | "3"
 }
 
 /**
- * Change la température de consigne d'un sensor
- * @param sensorId - ID du sensor
- * @param temperature - Température de consigne à définir
+ * Change the setpoint temperature of a sensor
+ * @param sensorId - Sensor ID
+ * @param temperature - Setpoint temperature to set
  * @returns Promise<void>
  */
 export async function changeSensorTemperature(sensorId: number, temperature: number): Promise<void> {
@@ -56,9 +56,9 @@ export async function changeSensorTemperature(sensorId: number, temperature: num
 }
 
 /**
- * Change le status d'un sensor (02 = Eteint, 03 = Allumé)
- * @param sensorId - ID du sensor
- * @param status - Status à définir ("02" pour Eteint, "03" pour Allumé)
+ * Change the status of a sensor (02 = Off, 03 = On)
+ * @param sensorId - Sensor ID
+ * @param status - Status to set ("02" for Off, "03" for On)
  * @returns Promise<void>
  */
 export async function changeSensorStatus(sensorId: number, status: "02" | "03"): Promise<void> {

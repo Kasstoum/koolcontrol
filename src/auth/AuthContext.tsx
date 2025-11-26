@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setTokenState] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Restaure le token au démarrage
+  // Restore token on startup
   useEffect(() => {
     (async () => {
       const saved = await AsyncStorage.getItem(TOKEN_KEY);

@@ -39,7 +39,7 @@ const SpeedIndicator = ({ speed, onPress }: SpeedIndicatorProps) => {
 
   const content = (
     <View className="px-3 py-1.5 rounded-full bg-slate-700/50 flex-row items-center gap-2">
-      <Text className="text-xs text-slate-400 font-semibold uppercase tracking-wide">Vitesse</Text>
+      <Text className="text-xs text-slate-400 font-semibold uppercase tracking-wide">Speed</Text>
       <View className="flex-row gap-1 items-center">
         {[1, 2, 3].map((level) => (
           <View

@@ -8,7 +8,7 @@ interface ModeIconProps {
 
 const ModeIcon = ({ mode, size = 16 }: ModeIconProps) => {
   if (mode === "1") {
-    // Flocon de neige (Clim) - version simplifiée
+    // Snowflake (Cooling) - simplified version
     return (
       <View style={{ width: size, height: size }} className="items-center justify-center">
         {/* Croix principale */}
@@ -36,7 +36,7 @@ const ModeIcon = ({ mode, size = 16 }: ModeIconProps) => {
       </View>
     );
   } else {
-    // Flamme (Chauffage) - version simplifiée
+    // Flame (Heating) - simplified version
     return (
       <View style={{ width: size, height: size }} className="items-center justify-center">
         {/* Base de la flamme */}
@@ -76,7 +76,7 @@ const ModeIcon = ({ mode, size = 16 }: ModeIconProps) => {
             top: 0,
           }}
         />
-        {/* Centre jaune */}
+        {/* Yellow center */}
         <View 
           className="absolute"
           style={{

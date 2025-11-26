@@ -57,7 +57,7 @@ const SensorCard = ({ sensor, onTemperaturePress, onStatusPress }: SensorCardPro
           disabled={!onTemperaturePress || setpoint === null || setpoint === undefined}
           className={`flex-1 items-center gap-1.5 justify-center ${onTemperaturePress && setpoint !== null && setpoint !== undefined ? "active:opacity-80" : ""}`}
         >
-          <Text className="text-xs text-slate-400 font-semibold uppercase tracking-wide">Consigne</Text>
+          <Text className="text-xs text-slate-400 font-semibold uppercase tracking-wide">Setpoint</Text>
           <Text className={`text-sm font-semibold ${onTemperaturePress && setpoint !== null && setpoint !== undefined ? "text-blue-400" : "text-slate-50"}`}>
             {setpoint !== null && setpoint !== undefined
               ? `${setpoint.toFixed(1)}°C`
@@ -90,7 +90,7 @@ const SensorCard = ({ sensor, onTemperaturePress, onStatusPress }: SensorCardPro
                   <Text className={`text-xs font-bold text-center ${
                     isOn ? "text-emerald-500" : "text-slate-500"
                   }`}>
-                    {isOn ? "Allumé" : "Eteint"}
+                    {isOn ? "On" : "Off"}
                   </Text>
                 </>
               );

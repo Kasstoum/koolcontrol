@@ -26,9 +26,9 @@ export async function getProjects(): Promise<Project[]> {
 }
 
 /**
- * Change le mode d'un topic (1 = Climatisation, 2 = Chauffage)
- * @param topicId - ID du topic
- * @param mode - Mode à définir ("1" pour Climatisation, "2" pour Chauffage)
+ * Change the mode of a topic (1 = Cooling, 2 = Heating)
+ * @param topicId - Topic ID
+ * @param mode - Mode to set ("1" for Cooling, "2" for Heating)
  * @returns Promise<void>
  */
 export async function changeProjectMode(topicId: number, mode: "1" | "2"): Promise<void> {
