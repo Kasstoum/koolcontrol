@@ -85,7 +85,6 @@ koolcontrol/
 │   ├── components/   # Composants réutilisables
 │   └── screens/      # Écrans de l'application
 ├── assets/           # Images et ressources
-├── ios/              # Projet iOS natif
 ├── app.json          # Configuration Expo
 ├── eas.json          # Configuration EAS Build
 └── package.json      # Dépendances et scripts
@@ -94,14 +93,6 @@ koolcontrol/
 ## 🔐 Authentification
 
 L'application utilise AsyncStorage pour persister les tokens d'authentification. Les tokens sont automatiquement restaurés au démarrage de l'application.
-
-## 📝 Génération de l'API
-
-Pour régénérer les types TypeScript à partir du Swagger :
-
-```bash
-npm run generate:api
-```
 
 ## 🚫 Fichiers exclus du Git
 

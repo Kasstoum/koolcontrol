@@ -91,7 +91,3 @@ coverage/
 *.tmp
 *.temp
 .cache/
-
-# Generated API files (if you want to exclude them)
-# Uncomment if you prefer to generate them on each machine
-# src/api/koolnova/

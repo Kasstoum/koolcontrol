@@ -9,8 +9,7 @@
     "web": "expo start --web",
     "build:ios": "eas build --platform ios",
     "build:ios:preview": "eas build --platform ios --profile preview",
-    "build:ios:production": "eas build --platform ios --profile production",
-    "generate:api": "openapi-generator-cli generate -i koolnova-swagger.json -g typescript-axios -o src/api/koolnova --additional-properties=withSeparateModelsAndApi=true,apiPackage=apis,modelPackage=models"
+    "build:ios:production": "eas build --platform ios --profile production"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.2.0",
@@ -29,7 +28,6 @@
     "tailwindcss": "^3.4.18"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.25.2",
     "@types/react": "~19.1.0",
     "babel-preset-expo": "^54.0.7",
     "typescript": "~5.9.2"
