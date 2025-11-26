@@ -36,25 +36,18 @@ yarn-error.*
 Icon
 ._*
 
-# Xcode
-# Build files
-ios/build/
-ios/Pods/
-ios/*.xcworkspace/xcuserdata/
-ios/*.xcodeproj/xcuserdata/
-ios/*.xcodeproj/project.xcworkspace/xcuserdata/
-ios/.xcode.env.local
+# Generated native folders (can be regenerated with expo prebuild)
+# These folders are generated automatically and should not be versioned
+ios/
+android/
+
+# Xcode user-specific files (if ios/ is tracked, these should be ignored)
 *.xcworkspace/xcshareddata/
 *.xcodeproj/xcshareddata/
 *.xcuserstate
 *.xcuserdatad
 
-# Android
-android/build/
-android/app/build/
-android/.gradle/
-android/local.properties
-android/.cxx/
+# Android build artifacts
 *.apk
 *.aab
 *.ap_
@@ -102,9 +95,3 @@ coverage/
 # Generated API files (if you want to exclude them)
 # Uncomment if you prefer to generate them on each machine
 # src/api/koolnova/
-
-# Keep these important files:
-# !ios/Podfile
-# !ios/Podfile.lock
-# !android/build.gradle
-# !android/app/build.gradle

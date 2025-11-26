@@ -27,6 +27,9 @@ Application mobile React Native pour le contrôle et la gestion des systèmes Ko
 # Installer les dépendances
 npm install
 
+# Générer les dossiers natifs iOS et Android (si nécessaire)
+npx expo prebuild
+
 # Pour iOS, installer les pods
 cd ios && pod install && cd ..
 ```
@@ -104,10 +107,12 @@ npm run generate:api
 
 Les fichiers suivants sont exclus du contrôle de version :
 - `node_modules/`
-- `ios/Pods/` et `ios/build/`
+- `ios/` et `android/` (générés avec `expo prebuild`)
 - `.expo/`
 - Fichiers de build et temporaires
 - Fichiers de configuration locale (`.env*.local`)
+
+**Note** : Les dossiers `ios/` et `android/` ne sont pas versionnés car ils peuvent être régénérés avec `expo prebuild`. Si vous clonez le projet, exécutez `npx expo prebuild` pour générer ces dossiers.
 
 Voir `.gitignore` pour la liste complète.
 
