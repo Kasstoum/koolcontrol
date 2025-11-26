@@ -1,6 +1,6 @@
 # KoolControl
 
-Application mobile React Native pour le contrôle et la gestion des systèmes KoolNova.
+React Native mobile application for controlling and managing KoolNova systems.
 
 ## 🚀 Technologies
 
@@ -8,45 +8,45 @@ Application mobile React Native pour le contrôle et la gestion des systèmes Ko
 - **React Native** 0.81.5
 - **React** 19.1.0
 - **TypeScript** 5.9.2
-- **NativeWind** 4.2.1 (Tailwind CSS pour React Native)
+- **NativeWind** 4.2.1 (Tailwind CSS for React Native)
 - **React Navigation** 7.x
-- **Axios** pour les appels API
+- **Axios** for API calls
 
-## 📋 Prérequis
+## 📋 Prerequisites
 
-- Node.js (version recommandée: 18+)
-- npm ou yarn
+- Node.js (recommended version: 18+)
+- npm or yarn
 - Expo CLI
-- Xcode (pour iOS)
-- Android Studio (pour Android)
-- Compte EAS (pour les builds)
+- Xcode (for iOS)
+- Android Studio (for Android)
+- EAS account (for builds)
 
 ## 🛠️ Installation
 
 ```bash
-# Installer les dépendances
+# Install dependencies
 npm install
 
-# Générer les dossiers natifs iOS et Android (si nécessaire)
+# Generate native iOS and Android folders (if needed)
 npx expo prebuild
 
-# Pour iOS, installer les pods
+# For iOS, install pods
 cd ios && pod install && cd ..
 ```
 
-## 🏃 Développement
+## 🏃 Development
 
 ```bash
-# Démarrer le serveur de développement
+# Start development server
 npm start
 
-# Lancer sur iOS
+# Run on iOS
 npm run ios
 
-# Lancer sur Android
+# Run on Android
 npm run android
 
-# Lancer sur le web
+# Run on web
 npm run web
 ```
 
@@ -55,13 +55,13 @@ npm run web
 ### iOS
 
 ```bash
-# Build de développement (simulateur)
+# Development build (simulator)
 npm run build:ios
 
-# Build preview
+# Preview build
 npm run build:ios:preview
 
-# Build production
+# Production build
 npm run build:ios:production
 ```
 
@@ -69,45 +69,44 @@ npm run build:ios:production
 
 ### EAS
 
-Le projet utilise EAS Build pour les builds natifs. La configuration se trouve dans `eas.json`.
+The project uses EAS Build for native builds. Configuration is in `eas.json`.
 
 ### API
 
-L'application se connecte à l'API KoolNova (`https://api.koolnova.com`). Les credentials sont gérés via l'authentification dans l'application.
+The application connects to the KoolNova API (`https://api.koolnova.com`). Credentials are managed through authentication in the application.
 
-## 📁 Structure du projet
+## 📁 Project Structure
 
 ```
 koolcontrol/
 ├── src/
-│   ├── api/          # Appels API (auth, projects, sensors)
-│   ├── auth/         # Contexte d'authentification
-│   ├── components/   # Composants réutilisables
-│   └── screens/      # Écrans de l'application
-├── assets/           # Images et ressources
-├── app.json          # Configuration Expo
-├── eas.json          # Configuration EAS Build
-└── package.json      # Dépendances et scripts
+│   ├── api/          # API calls (auth, projects, sensors)
+│   ├── auth/         # Authentication context
+│   ├── components/   # Reusable components
+│   └── screens/      # Application screens
+├── assets/           # Images and resources
+├── app.json          # Expo configuration
+├── eas.json          # EAS Build configuration
+└── package.json      # Dependencies and scripts
 ```
 
-## 🔐 Authentification
+## 🔐 Authentication
 
-L'application utilise AsyncStorage pour persister les tokens d'authentification. Les tokens sont automatiquement restaurés au démarrage de l'application.
+The application uses AsyncStorage to persist authentication tokens. Tokens are automatically restored on application startup.
 
-## 🚫 Fichiers exclus du Git
+## 🚫 Files Excluded from Git
 
-Les fichiers suivants sont exclus du contrôle de version :
+The following files are excluded from version control:
 - `node_modules/`
-- `ios/` et `android/` (générés avec `expo prebuild`)
+- `ios/` and `android/` (generated with `expo prebuild`)
 - `.expo/`
-- Fichiers de build et temporaires
-- Fichiers de configuration locale (`.env*.local`)
+- Build and temporary files
+- Local configuration files (`.env*.local`)
 
-**Note** : Les dossiers `ios/` et `android/` ne sont pas versionnés car ils peuvent être régénérés avec `expo prebuild`. Si vous clonez le projet, exécutez `npx expo prebuild` pour générer ces dossiers.
+**Note**: The `ios/` and `android/` folders are not versioned because they can be regenerated with `expo prebuild`. If you clone the project, run `npx expo prebuild` to generate these folders.
 
-Voir `.gitignore` pour la liste complète.
+See `.gitignore` for the complete list.
 
-## 📄 Licence
+## 📄 License
 
 Private project
-
