@@ -109,4 +109,4 @@ See `.gitignore` for the complete list.
 
 ## 📄 License
 
-Private project
+MIT License - see [LICENSE](LICENSE) file for details.

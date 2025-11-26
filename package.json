@@ -32,5 +32,6 @@
     "babel-preset-expo": "^54.0.7",
     "typescript": "~5.9.2"
   },
+  "license": "MIT",
   "private": true
 }
