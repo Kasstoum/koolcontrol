@@ -65,41 +65,11 @@ npm run build:ios:preview
 npm run build:ios:production
 ```
 
-## 🔄 Updates (OTA)
-
-The project uses EAS Update for Over-The-Air (OTA) updates. Once the initial build is installed on a device, you can publish JavaScript updates without rebuilding the app.
-
-### Publishing Updates
-
-After making code changes:
-
-```bash
-# Publish update to development channel
-npm run update:dev
-
-# Publish update to preview channel
-npm run update:preview
-
-# Publish update to production channel
-npm run update:production
-```
-
-### How It Works
-
-1. **Initial Build**: Install the app on your device using the build link (one-time setup)
-2. **Publish Updates**: Run `npm run update:dev` after code changes
-3. **Automatic Updates**: The app on your device will automatically update, even if your development machine is offline
-
-**Note**: OTA updates only work for JavaScript/TypeScript code changes. Native code changes require a new build.
-
 ## 🔧 Configuration
 
 ### EAS
 
-The project uses EAS Build for native builds and EAS Update for OTA updates. Configuration is in `eas.json`.
-
-- **EAS Build**: Creates native builds (iOS/Android)
-- **EAS Update**: Publishes JavaScript updates without rebuilding
+The project uses EAS Build for native builds. Configuration is in `eas.json`.
 
 ### API
 
