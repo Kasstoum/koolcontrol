@@ -37,8 +37,11 @@ cd ios && pod install && cd ..
 ## 🏃 Development
 
 ```bash
-# Start development server
+# Start development server (same network required)
 npm start
+
+# Start with tunnel mode (works across different networks, e.g., phone on 5G, Mac on WiFi)
+npm run start:tunnel
 
 # Run on iOS
 npm run ios
@@ -49,6 +52,8 @@ npm run android
 # Run on web
 npm run web
 ```
+
+**Note**: Use `npm run start:tunnel` when your phone and computer are on different networks (e.g., phone on 5G, Mac on WiFi). The tunnel mode uses Expo's servers as a relay, allowing connection from anywhere.
 
 ## 📦 Build
 
