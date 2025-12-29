@@ -5,10 +5,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAuth } from "../auth/AuthContext";
 import { getProjects, changeProjectMode } from "../api/projects";
 import { getSensors, Sensor, changeSensorSpeed, changeSensorTemperature, changeSensorStatus } from "../api/sensors";
+import { getWeather, WeatherData } from "../api/weather";
 import Logo from "../components/Logo";
 import SensorCard from "../components/SensorCard";
 import ModeIcon from "../components/ModeIcon";
 import SpeedIndicator from "../components/SpeedIndicator";
+import WeatherCard from "../components/WeatherCard";
 
 const HomeScreen = () => {
   const { token, logout } = useAuth();
@@ -25,10 +27,27 @@ const HomeScreen = () => {
   const [showTemperatureModal, setShowTemperatureModal] = useState(false);
   const [showStatusModal, setShowStatusModal] = useState(false);
   const [selectedSensor, setSelectedSensor] = useState<Sensor | null>(null);
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [weatherLoading, setWeatherLoading] = useState(false);
+  const [weatherError, setWeatherError] = useState<string | null>(null);
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const isDesktop = width >= 768;
   const numColumns = isDesktop ? (width >= 1200 ? 3 : 2) : 1;
+
+  const loadWeather = async () => {
+    setWeatherLoading(true);
+    setWeatherError(null);
+    try {
+      const data = await getWeather();
+      setWeather(data);
+    } catch (e) {
+      console.error("Error loading weather", e);
+      setWeatherError("Unable to load weather");
+    } finally {
+      setWeatherLoading(false);
+    }
+  };
 
   const loadData = async (isRefresh = false) => {
     if (!token) return;
@@ -38,6 +57,9 @@ const HomeScreen = () => {
     } else {
       setLoading(true);
     }
+    
+    // Load weather in parallel
+    loadWeather();
     
     try {
       const projects = await getProjects();
@@ -267,6 +289,13 @@ const HomeScreen = () => {
               data={sensors}
               keyExtractor={(item) => String(item.id)}
               renderItem={renderItem}
+              ListHeaderComponent={
+                <WeatherCard
+                  weather={weather}
+                  loading={weatherLoading}
+                  error={weatherError}
+                />
+              }
               contentContainerStyle={{
                 paddingBottom: 24,
                 ...(isDesktop && { paddingHorizontal: 0 }),
