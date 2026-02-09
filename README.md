@@ -55,20 +55,6 @@ npm run web
 
 **Note**: Use `npm run start:tunnel` when your phone and computer are on different networks (e.g., phone on 5G, Mac on WiFi). The tunnel mode uses Expo's servers as a relay, allowing connection from anywhere.
 
-## Docker
-
-Run the web app in production mode inside a container (Expo export + Caddy).
-
-**Prerequisites:** Docker and Docker Compose.
-
-```bash
-docker compose up --build -d
-```
-
-The app is available at `http://localhost:8080`.
-
-For production on a VPS (e.g. Scaleway), run the container there and use Caddy on the host as a reverse proxy on ports 80/443, routing by domain to this container (and others) on port 8080.
-
 ## 📦 Build
 
 ### iOS
