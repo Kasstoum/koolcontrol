@@ -57,6 +57,16 @@ npm run web
 
 ## 📦 Build
 
+### Web (PWA)
+
+The web app is set up as a Progressive Web App (installable, offline support). Use the full build including the service worker:
+
+```bash
+npm run build:web
+```
+
+This runs `expo export --platform web` then generates the Workbox service worker into `dist/`. For deployment (e.g. Netlify), set the build command to `npm run build:web` and publish directory to `dist`.
+
 ### iOS
 
 ```bash
