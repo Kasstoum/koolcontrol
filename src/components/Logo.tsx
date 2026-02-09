@@ -1,133 +1,45 @@
 import React from "react";
-import { View } from "react-native";
+import Svg, { Circle, ClipPath, Defs, G, Path, Rect } from "react-native-svg";
 
 interface LogoProps {
   size?: number;
 }
 
 const Logo = ({ size = 40 }: LogoProps) => {
-  const center = size / 2;
-  const halfWidth = size * 0.5;
-  
   return (
-    <View style={{ width: size, height: size }} className="relative items-center justify-center">
-      {/* Fond bleu avec coins arrondis */}
-      <View 
-        className="absolute rounded-xl bg-blue-500"
-        style={{ width: size, height: size }}
+    <Svg width={size} height={size} viewBox="0 0 512 512" role="img" accessibilityLabel="KoolControl In-App Icon">
+      <Defs>
+        <ClipPath id="thermoClip">
+          <Rect x="232" y="150" width="48" height="190" rx="24" />
+        </ClipPath>
+      </Defs>
+
+      {/* Anneau thermostat - blanc pour bonne lisibilité */}
+      <Circle
+        cx="256"
+        cy="256"
+        r="150"
+        fill="none"
+        stroke="#FFFFFF"
+        strokeWidth={30}
+        strokeLinecap="round"
       />
-      
-      {/* Left side - Heating (red/orange) */}
-      <View 
-        className="absolute rounded-l-xl"
-        style={{ 
-          width: halfWidth, 
-          height: size * 0.7,
-          top: size * 0.15,
-          left: 0,
-          backgroundColor: '#F97316', // Orange for hot
-        }}
-      />
-      
-      {/* Upward arrow (hot) - left side */}
-      <View 
-        className="absolute"
-        style={{
-          width: 0,
-          height: 0,
-          borderLeftWidth: size * 0.08,
-          borderRightWidth: size * 0.08,
-          borderBottomWidth: size * 0.12,
-          borderLeftColor: 'transparent',
-          borderRightColor: 'transparent',
-          borderBottomColor: '#FFFFFF',
-          top: size * 0.25,
-          left: size * 0.15,
-        }}
-      />
-      
-      {/* Heat lines (left side) */}
-      <View 
-        className="absolute bg-white/60 rounded-full"
-        style={{
-          width: size * 0.15,
-          height: 1.5,
-          top: size * 0.35,
-          left: size * 0.1,
-        }}
-      />
-      <View 
-        className="absolute bg-white/60 rounded-full"
-        style={{
-          width: size * 0.12,
-          height: 1.5,
-          top: size * 0.42,
-          left: size * 0.1,
-        }}
-      />
-      
-      {/* Right side - Cooling (blue) */}
-      <View 
-        className="absolute rounded-r-xl"
-        style={{ 
-          width: halfWidth, 
-          height: size * 0.7,
-          top: size * 0.15,
-          right: 0,
-          backgroundColor: '#38BDF8', // Blue for cold
-        }}
-      />
-      
-      {/* Downward arrow (cold) - right side */}
-      <View 
-        className="absolute"
-        style={{
-          width: 0,
-          height: 0,
-          borderLeftWidth: size * 0.08,
-          borderRightWidth: size * 0.08,
-          borderTopWidth: size * 0.12,
-          borderLeftColor: 'transparent',
-          borderRightColor: 'transparent',
-          borderTopColor: '#FFFFFF',
-          top: size * 0.5,
-          right: size * 0.15,
-        }}
-      />
-      
-      {/* Snowflakes/cold waves (right side) */}
-      <View 
-        className="absolute bg-white/60 rounded-full"
-        style={{
-          width: 1.5,
-          height: size * 0.1,
-          top: size * 0.35,
-          right: size * 0.2,
-        }}
-      />
-      <View 
-        className="absolute bg-white/60 rounded-full"
-        style={{
-          width: 1.5,
-          height: size * 0.08,
-          top: size * 0.48,
-          right: size * 0.25,
-        }}
-      />
-      
-      {/* Central separation line */}
-      <View 
-        className="absolute bg-white/40"
-        style={{
-          width: 1.5,
-          height: size * 0.7,
-          top: size * 0.15,
-          left: center - 0.75,
-        }}
-      />
-    </View>
+
+      {/* Thermomètre : tige */}
+      <Rect x="232" y="150" width="48" height="190" rx="24" fill="#FFFFFF" />
+
+      {/* Bulbe */}
+      <Circle cx="256" cy="340" r="34" fill="#FFFFFF" />
+
+      {/* Niveau (orange pour contraste et lisibilité) */}
+      <G clipPath="url(#thermoClip)" opacity={0.95}>
+        <Path
+          d="M220 258 C248 250 272 266 300 258 L300 380 L220 380 Z"
+          fill="#F97316"
+        />
+      </G>
+    </Svg>
   );
 };
 
 export default Logo;
-

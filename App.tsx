@@ -24,7 +24,12 @@ const RootNav = () => {
 
   return (
     // @ts-expect-error - React Navigation v7 type issue
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        title: "KoolControl",
+      }}
+    >
       {token ? (
         <Stack.Screen name="Home" component={HomeScreen} />
       ) : (

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="KoolControl App Icon">
+  <defs>
+    <!-- Fond exact de ton app -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#03293B"/>
+      <stop offset="100%" stop-color="#021B27"/>
+    </linearGradient>
+
+    <!-- Dégradé chaud/froid pour l’anneau (plus saturé pour visibilité) -->
+    <linearGradient id="temp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#F97316"/>
+    </linearGradient>
+
+    <!-- Clip pour le remplissage dans la tige -->
+    <clipPath id="thermoClip">
+      <rect x="232" y="150" width="48" height="190" rx="24"/>
+    </clipPath>
+  </defs>
+
+  <!-- Fond -->
+  <rect width="512" height="512" rx="120" fill="url(#bg)"/>
+
+  <!-- Anneau thermostat (trait plus épais, dégradé plus visible) -->
+  <circle cx="256" cy="256" r="150"
+          fill="none" stroke="url(#temp)" stroke-width="36" stroke-linecap="round"/>
+
+  <!-- Thermomètre : tige (blanc pour contraste) -->
+  <rect x="232" y="150" width="48" height="190" rx="24" fill="#FFFFFF"/>
+
+  <!-- Bulbe -->
+  <circle cx="256" cy="340" r="34" fill="#F97316"/>
+
+  <!-- Niveau avec micro-vague -->
+  <g clip-path="url(#thermoClip)">
+    <path d="M220 258
+             C248 250 272 266 300 258
+             L300 380
+             L220 380 Z"
+          fill="#F97316"/>
+  </g>
+</svg>
