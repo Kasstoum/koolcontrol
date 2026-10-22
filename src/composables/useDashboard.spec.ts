@@ -28,7 +28,7 @@ const sensor: Sensor = {
 
 function controller(overrides: Partial<Parameters<typeof createDashboard>[0]> = {}) {
   const dependencies = {
-    getToken: () => "token",
+    getToken: (): string | null => "token",
     getProjects: vi.fn(async (): Promise<Project[]> => [{ id: 7, name: "House", topic: { id: 3, mode: "1", last_sync: "2026-10-21T10:00:00Z" } }]),
     getSensors: vi.fn(async () => [sensor, { ...sensor, id: 12, setpoint_temperature: 19 }]),
     getWeather: vi.fn(async () => weather),
@@ -36,9 +36,8 @@ function controller(overrides: Partial<Parameters<typeof createDashboard>[0]> = 
     changeSensorSpeed: vi.fn(async () => undefined),
     changeSensorTemperature: vi.fn(async () => undefined),
     changeSensorStatus: vi.fn(async () => undefined),
-    ...overrides,
   }
-  return { dashboard: createDashboard(dependencies), dependencies }
+  return { dashboard: createDashboard({ ...dependencies, ...overrides }), dependencies }
 }
 
 describe("createDashboard", () => {
