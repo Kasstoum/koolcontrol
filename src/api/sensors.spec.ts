@@ -18,14 +18,15 @@ describe("sensors", () => {
     ["temperature", () => changeSensorTemperature(8, 21.5), { setpoint_temperature: 21.5 }],
     ["status", () => changeSensorStatus(8, "02"), { status: "02" }],
   ] as const)("patches %s", async (_name, action, body) => {
-    const calls: Array<RequestInit | undefined> = []
-    vi.stubGlobal("fetch", async (_url: string, init?: RequestInit) => {
-      calls.push(init)
+    const calls: Array<{ url: string; init?: RequestInit }> = []
+    vi.stubGlobal("fetch", async (url: string, init?: RequestInit) => {
+      calls.push({ url, init })
       return new Response("", { status: 200 })
     })
 
     await action()
-    expect(calls[0]?.method).toBe("PATCH")
-    expect(calls[0]?.body).toBe(JSON.stringify(body))
+    expect(calls[0]?.url).toBe("https://api.koolnova.com/topics/sensors/8/")
+    expect(calls[0]?.init?.method).toBe("PATCH")
+    expect(calls[0]?.init?.body).toBe(JSON.stringify(body))
   })
 })
