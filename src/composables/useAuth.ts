@@ -47,18 +47,22 @@ export function createAuth(dependencies: {
   return { token, isLoading, restore, login, logout }
 }
 
+function memoryTokenStorage(): TokenStorage {
+  const values = new Map<string, string>()
+  return {
+    getItem: (key) => values.get(key) ?? null,
+    setItem: (key, value) => values.set(key, value),
+    removeItem: (key) => values.delete(key),
+  }
+}
+
 const browserStorage = (globalThis as { localStorage?: TokenStorage }).localStorage
 
-export const auth = browserStorage
-  ? createAuth({
-      storage: browserStorage,
-      requestLogin: requestKoolNovaLogin,
-    })
-  : undefined
+export const auth: AuthController = createAuth({
+  storage: browserStorage ?? memoryTokenStorage(),
+  requestLogin: requestKoolNovaLogin,
+})
 
 export function useAuth(): AuthController {
-  if (!auth) {
-    throw new Error("localStorage is unavailable")
-  }
   return auth
 }
