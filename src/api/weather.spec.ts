@@ -12,7 +12,8 @@ describe("weather", () => {
     expect(getWeatherEmoji(0, true)).toBe("☀️")
     expect(getWeatherEmoji(0, false)).toBe("🌙")
     expect(getWeatherEmoji(82, true)).toBe("🌦️")
-    expect(getWeatherEmoji(123, true)).toBe("🌡️")
+    expect(getWeatherEmoji(123, true)).toBe("⛈️")
+    expect(getWeatherEmoji(4, true)).toBe("🌡️")
   })
 
   it("requests Saint-Didier-de-Formans and maps the forecast", async () => {

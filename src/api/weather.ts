@@ -56,7 +56,7 @@ export function getWeatherEmoji(code: number, isDay: boolean): string {
   if (code >= 71 && code <= 77) return "🌨️"
   if (code >= 80 && code <= 82) return "🌦️"
   if (code >= 85 && code <= 86) return "🌨️"
-  if (code === 95 || code === 96 || code === 99) return "⛈️"
+  if (code >= 95) return "⛈️"
   return "🌡️"
 }
 
