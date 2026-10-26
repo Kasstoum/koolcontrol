@@ -58,7 +58,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex min-h-screen flex-col bg-slate-900">
+  <div class="flex h-dvh flex-col overflow-hidden bg-slate-900">
     <AppHeader
       :project-name="dashboard.projectName.value"
       :project-mode="dashboard.projectMode.value"
@@ -71,7 +71,7 @@ onMounted(() => {
       @open-mode="activeDialog = 'mode'"
       @open-speed="activeDialog = 'speed'"
     />
-    <main class="mx-auto w-full max-w-[1400px] flex-1 px-5 py-4">
+    <main class="mx-auto min-h-0 w-full max-w-[1400px] flex-1 overflow-y-auto px-5 py-4">
       <p v-if="dashboard.status.value === 'loading'" class="py-16 text-center text-[17px] font-medium text-slate-400">Loading...</p>
       <p v-else-if="dashboard.status.value === 'empty'" class="py-16 text-center text-slate-300">No project available</p>
       <div v-else-if="dashboard.status.value === 'error'" class="py-16 text-center">
@@ -84,7 +84,7 @@ onMounted(() => {
           <p class="font-medium text-orange-500">{{ dashboard.actionError.value }}</p>
           <button type="button" class="text-sm font-semibold text-slate-300" @click="dashboard.dismissActionError()">Dismiss</button>
         </div>
-        <div class="grid grid-cols-1 gap-2 md:grid-cols-2 min-[1200px]:grid-cols-3">
+        <div class="sensor-grid">
           <SensorCard
             v-for="sensor in dashboard.sensors.value"
             :key="sensor.id"
@@ -102,3 +102,28 @@ onMounted(() => {
     <StatusDialog v-if="activeDialog === 'status' && selectedSensor" :sensor-name="selectedSensor.name ?? ''" :status="selectedSensor.status" @close="closeDialog" @select="confirmStatus" />
   </div>
 </template>
+
+<style scoped>
+.sensor-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sensor-grid > :deep(article) {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .sensor-grid > :deep(article) {
+    flex-basis: calc((100% - 0.5rem) / 2);
+  }
+}
+
+@media (min-width: 1200px) {
+  .sensor-grid > :deep(article) {
+    flex-basis: calc((100% - 1rem) / 3);
+  }
+}
+</style>

@@ -32,14 +32,14 @@ function temperatureClass(temperature: number): string {
     {{ error || "Weather unavailable" }}
   </section>
   <section v-else class="mb-4 overflow-hidden rounded-xl border border-amber-500/20 p-4" :style="{ backgroundImage: `linear-gradient(135deg, ${gradient})` }">
-    <div class="mb-3 flex items-center justify-between">
+    <div class="mb-3 flex items-center justify-between gap-2">
       <p class="text-xs font-bold uppercase tracking-widest text-amber-400/80">Outdoor Weather</p>
-      <p class="text-sm font-medium text-amber-200/80">{{ weather.location }}</p>
+      <p class="flex items-center gap-1 text-sm font-medium text-amber-200/80"><span aria-hidden="true">📍</span>{{ weather.location }}</p>
     </div>
-    <div class="mb-3 flex items-center justify-between">
+    <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center gap-3">
-        <span class="text-4xl">{{ getWeatherEmoji(weather.weatherCode, weather.isDay) }}</span>
-        <p class="text-5xl font-extrabold tracking-tight" :class="temperatureClass(weather.temperature)">
+        <span class="shrink-0 text-4xl">{{ getWeatherEmoji(weather.weatherCode, weather.isDay) }}</span>
+        <p class="text-4xl font-extrabold tracking-tight sm:text-5xl" :class="temperatureClass(weather.temperature)">
           {{ weather.temperature.toFixed(1) }}<span class="text-2xl font-semibold text-amber-200/60">°C</span>
         </p>
       </div>
@@ -48,11 +48,11 @@ function temperatureClass(temperature: number): string {
         <p class="text-sm text-amber-200/50">Feels like {{ weather.feelsLike.toFixed(0) }}°</p>
       </div>
     </div>
-    <div class="flex items-center justify-between border-t border-amber-500/20 pt-3 text-sm font-semibold">
-      <span class="text-amber-100/80">{{ weather.humidity }}%</span>
-      <span class="text-amber-100/80">{{ weather.windSpeed.toFixed(0) }} km/h</span>
-      <span class="text-orange-300">{{ weather.temperatureMax.toFixed(0) }}°</span>
-      <span class="text-sky-300">{{ weather.temperatureMin.toFixed(0) }}°</span>
+    <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-t border-amber-500/20 pt-3 text-sm font-semibold">
+      <span class="flex items-center gap-1.5 text-amber-100/80"><span class="shrink-0" aria-hidden="true">💧</span>{{ weather.humidity }}%</span>
+      <span class="flex items-center gap-1.5 text-amber-100/80"><span class="shrink-0" aria-hidden="true">💨</span>{{ weather.windSpeed.toFixed(0) }} km/h</span>
+      <span class="flex items-center gap-1 text-orange-300"><span class="shrink-0" aria-hidden="true">↗️</span>{{ weather.temperatureMax.toFixed(0) }}°</span>
+      <span class="flex items-center gap-1 text-sky-300"><span class="shrink-0" aria-hidden="true">↘️</span>{{ weather.temperatureMin.toFixed(0) }}°</span>
     </div>
   </section>
 </template>

@@ -17,7 +17,7 @@ const emit = defineEmits<{ refresh: []; logout: []; openMode: []; openSpeed: [] 
 </script>
 
 <template>
-  <header class="border-b border-slate-700/50 bg-slate-800 shadow-lg">
+  <header class="shrink-0 border-b border-slate-700/50 bg-slate-800 shadow-lg">
     <div class="mx-auto w-full max-w-[1400px] px-5 py-4">
       <div class="mb-3 flex items-center justify-between gap-3">
         <div class="flex items-center gap-2.5">
