@@ -1,7 +1,7 @@
 export const MIN_TEMPERATURE = 15
 export const MAX_TEMPERATURE = 30
 export const TEMPERATURE_STEP = 0.5
-export const TEMPERATURE_PRESETS = [18, 20, 22, 24, 26] as const
+export const TEMPERATURE_PRESETS = [17, 19, 21, 24, 25] as const
 
 export function clampTemperature(value: number): number {
   const bounded = Math.min(MAX_TEMPERATURE, Math.max(MIN_TEMPERATURE, value))

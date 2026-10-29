@@ -9,6 +9,6 @@ describe("temperature", () => {
     expect(adjustTemperature(30, 0.5)).toBe(30)
     expect(adjustTemperature(15, -0.5)).toBe(15)
     expect(initialTemperature(null)).toBe(20)
-    expect(TEMPERATURE_PRESETS).toEqual([18, 20, 22, 24, 26])
+    expect(TEMPERATURE_PRESETS).toEqual([17, 19, 21, 24, 25])
   })
 })

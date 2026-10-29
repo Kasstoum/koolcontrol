@@ -5,6 +5,10 @@ import { auth } from "./composables/useAuth"
 import { router } from "./router"
 import "./assets/main.css"
 
+for (const eventName of ["gesturestart", "gesturechange"]) {
+  document.addEventListener(eventName, (event) => event.preventDefault(), { passive: false })
+}
+
 setTokenGetter(() => auth.token.value)
 setUnauthorizedHandler(() => {
   auth.logout()

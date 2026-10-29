@@ -5,3 +5,17 @@ body,
 #app {
   min-height: 100%;
 }
+
+html,
+body,
+button,
+a,
+input {
+  touch-action: pan-x pan-y;
+}
+
+button:not(:disabled),
+a[href],
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
