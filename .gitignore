@@ -1,26 +1,10 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
-
 # dependencies
 node_modules/
 .pnp
 .pnp.js
 
-# Expo
-.expo/
-.expo-shared/
+# build
 dist/
-web-build/
-expo-env.d.ts
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-*.orig.*
-*.pem
-
-# Metro
-.metro-health-check*
 
 # debug
 npm-debug.*
@@ -30,43 +14,19 @@ yarn-error.*
 
 # macOS
 .DS_Store
-*.pem
 .AppleDouble
 .LSOverride
 Icon
 ._*
 
-# Generated native folders (can be regenerated with expo prebuild)
-# These folders are generated automatically and should not be versioned
-ios/
-android/
-
-# Xcode user-specific files (if ios/ is tracked, these should be ignored)
-*.xcworkspace/xcshareddata/
-*.xcodeproj/xcshareddata/
-*.xcuserstate
-*.xcuserdatad
-
-# Android build artifacts
-*.apk
-*.aab
-*.ap_
-*.dex
-*.class
-bin/
-gen/
-out/
-.gradle/
-
-# Kotlin
-.kotlin/
-
-# local env files
+# secrets
 .env
 .env*.local
 .env.development.local
 .env.test.local
 .env.production.local
+*.pem
+*.key
 
 # typescript
 *.tsbuildinfo
@@ -83,11 +43,11 @@ out/
 *.sublime-project
 *.sublime-workspace
 
-# Testing
+# testing
 coverage/
 .nyc_output/
 
-# Temporary files
+# temporary files
 *.tmp
 *.temp
 .cache/

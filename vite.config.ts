@@ -3,7 +3,7 @@ import { defineConfig } from "vitest/config"
 import vue from "@vitejs/plugin-vue"
 import tailwindcss from "@tailwindcss/vite"
 import { VitePWA } from "vite-plugin-pwa"
-import { pwaManifest } from "./src/pwa/manifest"
+import { pwaManifest } from "./src/pwa/manifest.ts"
 
 export default defineConfig({
   plugins: [

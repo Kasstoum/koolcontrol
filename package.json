@@ -1,6 +1,7 @@
 {
   "name": "koolcontrol",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -13,12 +14,12 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
-    "@vitejs/plugin-vue": "^5.2.4",
+    "@vitejs/plugin-vue": "^6.0.10",
     "tailwindcss": "^4.3.3",
-    "typescript": "~5.9.2",
-    "vite": "^6.4.5",
-    "vite-plugin-pwa": "^1.3.0",
-    "vitest": "^4.1.12",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.5",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^5.0.5",
     "vue-tsc": "^3.3.13"
   },
   "license": "MIT",
