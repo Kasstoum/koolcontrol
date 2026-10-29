@@ -1,16 +1,10 @@
-// src/api/auth.ts
-import { api } from "./http";
+import { apiRequest } from "./client"
 
-export type LoginPayload = {
-  username: string;
-  password: string;
-};
-
-export type LoginResponse = {
-  access_token: string;
-};
-
-export async function login(payload: LoginPayload): Promise<LoginResponse> {
-  const res = await api.post("/auth/v2/login/", payload);
-  return res.data;
+export function login(username: string, password: string): Promise<{ access_token: string }> {
+  return apiRequest({
+    method: "POST",
+    path: "/auth/v2/login/",
+    body: { username, password },
+    auth: false,
+  })
 }
